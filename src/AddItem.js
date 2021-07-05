@@ -21,7 +21,7 @@ export default class AddItem extends React.Component {
     }
 
     addItem() {
-        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlvZWx0YW51amF5YSIsIm5hbWUiOiJ5b2VsYWphaCIsInJvbGUiOiJTVEFGRiIsInJvbGVfbGV2ZWwiOjAsImlhdCI6MTYyNTQ1ODI0MCwiZXhwIjoxNjI1NTQ0NjQwfQ.GScIMHgATTMhI2eJT59qxooAGVomyVUqbiKxRQjJt_I';
+        let token = localStorage.getItem('token');
         axios.post(
             'http://localhost:8000/merchant/product',
             this.state,
