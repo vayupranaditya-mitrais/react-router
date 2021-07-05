@@ -28,7 +28,7 @@ class EditItem extends React.Component {
     }
 
     initData() {
-        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlvZWx0YW51amF5YSIsIm5hbWUiOiJ5b2VsYWphaCIsInJvbGUiOiJTVEFGRiIsInJvbGVfbGV2ZWwiOjAsImlhdCI6MTYyNTQ1ODI0MCwiZXhwIjoxNjI1NTQ0NjQwfQ.GScIMHgATTMhI2eJT59qxooAGVomyVUqbiKxRQjJt_I';
+        let token = localStorage.getItem('token');
         axios.get(
             `http://localhost:8000/merchant/product/${this.state.id}`,
             {
@@ -44,6 +44,28 @@ class EditItem extends React.Component {
                 description: res.data.description,
                 stock: res.data.stock
             })
+        })
+    }
+
+    save = () => {
+        let url = `http://localhost:8000/merchant/product/${this.state.id}`;
+        let token = localStorage.getItem('token');
+        axios.patch(
+            url,
+            {
+                name: this.state.name,
+                basePrice: this.state.basePrice,
+                description: this.state.description,
+                stock: this.state.stock
+            },
+            {
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            }
+        ).then(res => {
+            window.alert('Updated!');
+            this.props.history.push('/items');
         })
     }
 
@@ -111,8 +133,8 @@ class EditItem extends React.Component {
                             />
                     </FormGroup>
                     <FormGroup >
-                        <Button color="success" onClick={() => this.addItem()}>Update</Button>
-                        <Button color="danger" onClick={() => this.addItem()}>Cancel</Button>
+                        <Button color="success" onClick={() => this.save()}>Update</Button>
+                        <Button color="danger" onClick={() => this.props.history.push('/items')}>Cancel</Button>
                     </FormGroup>
                 </Form>
             </React.Fragment>
