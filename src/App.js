@@ -33,6 +33,14 @@ class App extends React.Component {
       this.checkLogin();
   }
 
+  logout = () => {
+    localStorage.removeItem('token');
+    this.setState({
+      isLoggedIn: false,
+      user: new User()
+    });
+  }
+
   render() {
     return (
       <div>
@@ -41,7 +49,7 @@ class App extends React.Component {
           <Container>
             <Switch>
               <Route exact path="/">
-                <Home setToken={this.setToken} isLoggedIn={this.state.isLoggedIn} />
+                <Home setToken={this.setToken} isLoggedIn={this.state.isLoggedIn} logout={this.logout} />
               </Route>
               <ProtectedRoute isLoggedIn={this.state.isLoggedIn} path="/items/new">
                 <AddItem />
