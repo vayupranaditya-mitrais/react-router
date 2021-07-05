@@ -14,7 +14,8 @@ export default class User {
             headers: {
                 authorization: `bearer ${this.token}`
             }
-        }).then(res => res.status === 200);
+        }).then(res => res.status === 200)
+        .catch(err => false);
     }
 
     saveToken(token) {
