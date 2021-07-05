@@ -18,7 +18,7 @@ export default class ItemList extends React.Component{
     }
 
     initData(page=1) {
-        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlvZWx0YW51amF5YSIsIm5hbWUiOiJ5b2VsYWphaCIsInJvbGUiOiJTVEFGRiIsInJvbGVfbGV2ZWwiOjAsImlhdCI6MTYyNTQ1ODI0MCwiZXhwIjoxNjI1NTQ0NjQwfQ.GScIMHgATTMhI2eJT59qxooAGVomyVUqbiKxRQjJt_I';
+        let token = localStorage.getItem('token');
         axios.get(`http://localhost:8000/merchant/product?page=${page}`, {
             headers: {
                 authorization: `bearer ${token}`
@@ -33,7 +33,7 @@ export default class ItemList extends React.Component{
     }
 
     remove = (itemId) => {
-        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlvZWx0YW51amF5YSIsIm5hbWUiOiJ5b2VsYWphaCIsInJvbGUiOiJTVEFGRiIsInJvbGVfbGV2ZWwiOjAsImlhdCI6MTYyNTQ1ODI0MCwiZXhwIjoxNjI1NTQ0NjQwfQ.GScIMHgATTMhI2eJT59qxooAGVomyVUqbiKxRQjJt_I';
+        let token = localStorage.getItem('token');
         axios.delete(`http://localhost:8000/merchant/product/${itemId}`, {
             headers: {
                 authorization: `bearer ${token}`

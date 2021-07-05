@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import ProtectedLink from './ProtectedLink';
 import { Collapse, Container, Nav, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
 
-export default function NavBar() {
+export default function NavBar(props) {
     return (
         <Navbar color="light" light expand="md">
             <Container>
@@ -12,12 +13,12 @@ export default function NavBar() {
                     <Nav className="mr-auto" navbar>
                         <NavItem>
                             <NavLink>
-                                <Link to="/items">Items</Link>
+                                <ProtectedLink isLoggedIn={props.isLoggedIn} to="/items">Items</ProtectedLink>
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink>
-                                <Link to="/items/new">Add New</Link>
+                                <ProtectedLink isLoggedIn={props.isLoggedIn} to="/items/new">Add New</ProtectedLink>
                             </NavLink>
                         </NavItem>
                     </Nav>
